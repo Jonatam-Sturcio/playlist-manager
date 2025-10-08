@@ -1,4 +1,4 @@
-*Importante: Este projeto se trata de um trabalho exploratório da faculdade sobre react. Nunca deixe credenciais de acesso de forma fixa no código.*
+## ***Importante: Este projeto se trata de um trabalho exploratório da faculdade sobre react. Nunca deixe credenciais de acesso de forma fixa no código.***
 
 # Playlist Manager
 
