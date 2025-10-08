@@ -65,6 +65,7 @@ export interface MusicState {
   searchResults: Music[];
   albumResults: Album[]; // Novo: resultados de álbuns
   currentAlbumTracks: Music[]; // Novo: músicas do álbum selecionado
+  topTracks: Music[];
   loading: boolean;
   error: string | null;
   searchQuery: string;

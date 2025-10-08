@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../../store';
+import { getTop3Musics } from '../../store/slices/musicSlice';
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const artistName = 'Queen'; 
+
+  const { topTracks} = useSelector(
+    (state: RootState) => state.music
+  );
+
+  useEffect(() => {
+    dispatch(getTop3Musics(artistName));
+  }, [dispatch]);
 
   return (
     <div className="home-container">
@@ -12,6 +25,23 @@ const Home: React.FC = () => {
           <h1>🎵 Bem-vindo ao Playlist Manager!</h1>
           <p>Gerencie suas playlists favoritas e descubra novas músicas</p>
         </section>
+        <section className="popular-section">
+          <h2>👑 Top 3 do Queen</h2>
+          <div className="music-grid">
+            {topTracks.map((music, index) => (
+            <div key={music.id} className="music-card">
+              <div className="music-rank">#{index + 1}</div>
+              <div className="music-info">
+                <h3>{music.name}</h3>
+                <p>{music.artist}</p>
+                <span className="genre">{music.genre}</span>
+                {music.year && <span className="year">({music.year})</span>}
+              </div>
+            </div>
+            ))}
+          </div>
+        </section>
+
         <section className="quick-actions">
           <h2>Ações Rápidas</h2>
           <div className="actions-grid">
