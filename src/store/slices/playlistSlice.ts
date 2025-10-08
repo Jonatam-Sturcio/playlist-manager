@@ -98,13 +98,6 @@ const playlistSlice = createSlice({
       }
     },
     
-    // Obter playlists do usuário
-    getUserPlaylists: (state, action: PayloadAction<string>) => {
-      // Filtrar apenas as playlists do usuário atual
-      const userPlaylists = state.playlists.filter(p => p.userId === action.payload);
-      state.playlists = state.playlists; // manter todas, mas pode ser usado para UI
-    },
-    
     // Estados de loading/error
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
@@ -135,7 +128,6 @@ export const {
   addMusicToPlaylist,
   removeMusicFromPlaylist,
   setCurrentPlaylist,
-  getUserPlaylists,
   setLoading,
   setError,
   reloadPlaylists,
