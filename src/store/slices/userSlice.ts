@@ -55,35 +55,38 @@ const userSlice = createSlice({
     login: (state, action: PayloadAction<{ email: string }>) => {
       // Gerar ID baseado no email para consistência entre logins
       const userId = `user_${action.payload.email.replace(/[^a-zA-Z0-9]/g, '_')}`;
-      
+
       const user: User = {
         id: userId,
         email: action.payload.email,
         isLoggedIn: true,
       };
-      
+
       state.currentUser = user;
       state.sessionData.lastLogin = new Date().toISOString();
-      
+
       // Salvar no sessionStorage
       saveSessionData(state.sessionData);
       saveUserToSession(user);
     },
-    
+
     logout: (state) => {
       state.currentUser = null;
       state.sessionData = {};
-      
+
       // Limpar sessionStorage
       sessionStorage.removeItem('playlist-manager-session');
       sessionStorage.removeItem('playlist-manager-user');
+
+      localStorage.removeItem('lastArtistQuery');
+      localStorage.removeItem('lastAlbumResults');
     },
-    
+
     updateLastPlaylistAccessed: (state, action: PayloadAction<string>) => {
       state.sessionData.lastPlaylistAccessed = action.payload;
       saveSessionData(state.sessionData);
     },
-    
+
     restoreSession: (state) => {
       state.sessionData = loadSessionData();
       state.currentUser = loadUserFromSession();
