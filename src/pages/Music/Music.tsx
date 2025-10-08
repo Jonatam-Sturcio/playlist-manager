@@ -73,7 +73,7 @@ const MusicPage: React.FC = () => {
     <div className="music-container">
       <header className="music-header">
         <h1>
-          {'🎵 Álbuns'}
+          {'🎵 Músicas'}
         </h1>
       </header>
 
@@ -83,7 +83,7 @@ const MusicPage: React.FC = () => {
             type="text"
             value={artistQuery}
             onChange={(e) => setArtistQuery(e.target.value)}
-            placeholder="Buscar por artista..."
+            placeholder="Buscar por artista ou banda..."
             className="search-input"
             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
           />
@@ -99,7 +99,7 @@ const MusicPage: React.FC = () => {
       <div className="music-grid">
         {showTopMusics ? (
           <div className="empty-state">
-            <h3>Pesquise por uma banda</h3>
+            <h3>Pesquise por um artista ou banda</h3>
           </div>
         ) : (!showTopMusics && displayAlbums.length === 0) ? (
           <div className="empty-state">
